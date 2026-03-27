@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ru">
 
 <head>
@@ -13,7 +14,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img style="height: 50px;" src="cat.png" alt="Logo" />
+                    <img style="height: 50px;" src="{% static 'images/cat.png' %}" alt="Logo" />
                     <span class="fw-semibold">Cat Library</span>
                 </a>
 
@@ -59,7 +60,7 @@
             <div class="row">
                 <div class="col">
                     <div class="card" style="width: 16rem; margin-top: 3rem; margin-bottom: 3rem">
-                        <img style="height: 250px;" src="cat_k.jpg" alt="Каталог пород">
+                        <img style="height: 250px;" src="{% static 'images/cat_k.jpg' %}" alt="Каталог пород">
                         <div class="card-body">
                             <h5 class="card-title">Каталог пород</h5>
                             <p class="card-text">Описания, характер, фото</p>
@@ -69,7 +70,7 @@
                 </div>
                 <div class="col">
                     <div class="card" style="width: 16rem; margin-top: 3rem; margin-bottom: 3rem">
-                        <img style="height: 250px;" src="cat_m.jpg" alt="Уход и содержание">
+                        <img style="height: 250px;" src="{% static 'images/cat_m.jpg' %}" alt="Уход и содержание">
                         <div class="card-body">
                             <h5 class="card-title">Уход и содержание</h5>
                             <p class="card-text">Питание и профилактика</p>
@@ -79,7 +80,7 @@
                 </div>
                 <div class="col">
                     <div class="card" style="width: 16rem; margin-top: 3rem; margin-bottom: 3rem">
-                        <img style="height: 250px;" src="cat_s.jpg" alt="Подбор породы">
+                        <img style="height: 250px;" src="{% static 'images/cat_s.jpg' %}" alt="Подбор породы">
                         <div class="card-body">
                             <h5 class="card-title">Подбор породы</h5>
                             <p class="card-text">Мини-тест: подберем породу</p>
