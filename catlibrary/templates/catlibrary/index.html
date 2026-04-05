@@ -7,18 +7,27 @@
 <div class="container" style="margin-top: 2rem;">
     <h1>{{ title }}</h1>
     <p>{{ welcome_text }}</p>
-    <a href="{% url 'catlibrary:about' %}" class="btn btn-warning btn-lg">Смотреть породы</a>
+
+    <!-- ИСПРАВЛЕНО: теперь ведет в каталог -->
+    <a href="{% url 'catlibrary:catalog' %}" class="btn btn-warning btn-lg">
+        Смотреть породы
+    </a>
 </div>
 
 <div class="container text-center">
     <div class="row">
+
         <div class="col">
             <div class="card" style="width: 16rem; margin-top: 3rem; margin-bottom: 3rem">
                 <img style="height: 250px;" src="{% static 'images/cat_k.jpg' %}" alt="Каталог пород">
                 <div class="card-body">
                     <h5 class="card-title">Каталог пород</h5>
                     <p class="card-text">Описания, характер, фото</p>
-                    <a href="{% url 'catlibrary:about' %}" class="btn btn-warning">Смотреть</a>
+
+                    <!-- ИСПРАВЛЕНО -->
+                    <a href="{% url 'catlibrary:catalog' %}" class="btn btn-warning">
+                        Смотреть
+                    </a>
                 </div>
             </div>
         </div>
@@ -29,7 +38,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Уход и содержание</h5>
                     <p class="card-text">Питание и профилактика</p>
-                    <a href="{% url 'catlibrary:about' %}" class="btn btn-warning">Смотреть</a>
+                    <a href="{% url 'catlibrary:care' %}" class="btn btn-warning">
+                        Смотреть
+                    </a>
                 </div>
             </div>
         </div>
@@ -40,10 +51,13 @@
                 <div class="card-body">
                     <h5 class="card-title">Подбор породы</h5>
                     <p class="card-text">Мини-тест: подберем породу</p>
-                    <a href="{% url 'catlibrary:about' %}" class="btn btn-warning">Смотреть</a>
+                    <a href="{% url 'catlibrary:faq' %}" class="btn btn-warning">
+                        Смотреть
+                    </a>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 {% endblock %}
