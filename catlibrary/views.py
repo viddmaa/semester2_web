@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .models import Breed
 
 def index(request):
     context = {
@@ -25,3 +25,11 @@ def faq(request):
         'title': 'Часто задаваемые вопросы'
     }
     return render(request, 'catlibrary/faq.html', context)
+
+def catalog(request):
+    breeds = Breed.objects.all()
+    context = {
+        'title': 'Каталог пород',
+        'breeds': breeds
+    }
+    return render(request, 'catlibrary/catalog.html', context)

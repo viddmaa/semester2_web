@@ -1,7 +1,5 @@
 from django.db import models
 
-from django.db import models
-
 
 class Breed(models.Model):
     name = models.CharField(
@@ -19,6 +17,14 @@ class Breed(models.Model):
     life_expectancy = models.IntegerField(
         verbose_name='Средняя продолжительность жизни'
     )
+
+    image = models.ImageField(
+        upload_to='breeds/',
+        verbose_name='Фото породы',
+        blank=True,
+        null=True
+    )
+    
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата создания'
