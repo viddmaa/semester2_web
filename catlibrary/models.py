@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Breed(models.Model):
@@ -32,6 +33,10 @@ class Breed(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('catlibrary:breed_detail', kwargs={'pk': self.pk})
+    
 
     class Meta:
         verbose_name = 'Порода'
