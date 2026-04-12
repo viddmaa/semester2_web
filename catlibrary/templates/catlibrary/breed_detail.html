@@ -1,0 +1,137 @@
+{% extends 'catlibrary/base.html' %}
+
+{% block title %}{{ breed.name }}{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <nav class="mb-3 text-muted small">
+        <a href="{% url 'catlibrary:home' %}" class="text-decoration-none text-muted">Главная</a>
+        /
+        <a href="{% url 'catlibrary:catalog' %}" class="text-decoration-none text-muted">Каталог пород</a>
+        /
+        <span>{{ breed.name }}</span>
+    </nav>
+
+    <div class="row align-items-center g-4 mb-5">
+        <div class="col-lg-6">
+            {% if breed.image %}
+                <img src="{{ breed.image.url }}"
+                     alt="{{ breed.name }}"
+                     class="img-fluid rounded-4 shadow-sm w-100"
+                     style="max-height: 460px; object-fit: cover;">
+            {% else %}
+                <div class="rounded-4 bg-light d-flex align-items-center justify-content-center shadow-sm"
+                     style="height: 460px;">
+                    <span class="text-muted">Изображение в разработке</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-lg-6">
+            <p class="text-uppercase text-muted small mb-2">Порода кошек</p>
+            <h1 class="display-5 fw-bold mb-3">{{ breed.name }}</h1>
+
+            <p class="lead text-secondary mb-4">
+                В разработке.
+            </p>
+
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <div class="border rounded-4 p-3 h-100">
+                        <div class="text-muted small mb-1">Средний вес</div>
+                        <div class="fs-5 fw-semibold">{{ breed.average_weight }} кг</div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="border rounded-4 p-3 h-100">
+                        <div class="text-muted small mb-1">Продолжительность жизни</div>
+                        <div class="fs-5 fw-semibold">{{ breed.life_expectancy }} лет</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Содержание -->
+    <section class="mb-5">
+        <h2 class="h4 mb-3">Содержание</h2>
+        <div class="d-flex flex-wrap gap-2">
+            <a href="#summary" class="btn btn-outline-secondary btn-sm">Краткая информация</a>
+            <a href="#character" class="btn btn-outline-secondary btn-sm">Характер</a>
+            <a href="#origin" class="btn btn-outline-secondary btn-sm">Происхождение</a>
+            <a href="#care" class="btn btn-outline-secondary btn-sm">Уход</a>
+        </div>
+    </section>
+
+    <section class="mb-5">
+        <h2 class="h4 mb-4">Характеристики породы</h2>
+
+        <div class="row g-3">
+            <div class="col-md-6 col-lg-4">
+                <div class="bg-light rounded-4 p-4 h-100">
+                    <div class="fw-semibold mb-2">Активность</div>
+                    <div class="text-muted">В разработке</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="bg-light rounded-4 p-4 h-100">
+                    <div class="fw-semibold mb-2">Общительность</div>
+                    <div class="text-muted">В разработке</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="bg-light rounded-4 p-4 h-100">
+                    <div class="fw-semibold mb-2">Линька</div>
+                    <div class="text-muted">В разработке</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="summary" class="mb-5">
+        <h2 class="h3 mb-3">Краткая информация</h2>
+        <div class="border rounded-4
+p-4">
+            <div class="row gy-3">
+                <div class="col-md-6">
+                    <div><strong>Название:</strong> {{ breed.name }}</div>
+                </div>
+                <div class="col-md-6">
+                    <div><strong>Средний вес:</strong> {{ breed.average_weight }} кг</div>
+                </div>
+                <div class="col-md-6">
+                    <div><strong>Продолжительность жизни:</strong> {{ breed.life_expectancy }} лет</div>
+                </div>
+                <div class="col-md-6">
+                    <div><strong>Описание:</strong> в разработке</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="character" class="mb-5">
+        <h2 class="h3 mb-3">Характер</h2>
+        <p class="text-secondary">
+            Раздел находится в разработке.
+        </p>
+    </section>
+
+    <section id="origin" class="mb-5">
+        <h2 class="h3 mb-3">Происхождение</h2>
+        <p class="text-secondary">
+            Раздел находится в разработке.
+        </p>
+    </section>
+
+    <section id="care" class="mb-5">
+        <h2 class="h3 mb-3">Уход</h2>
+        <p class="text-secondary">
+            Раздел находится в разработке.
+        </p>
+    </section>
+
+    <a href="{% url 'catlibrary:catalog' %}" class="btn btn-secondary">
+        ← Назад к каталогу
+    </a>
+</div>
+{% endblock %}

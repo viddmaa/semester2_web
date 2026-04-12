@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Breed
 
 def index(request):
@@ -33,3 +33,11 @@ def catalog(request):
         'breeds': breeds
     }
     return render(request, 'catlibrary/catalog.html', context)
+
+def breed_detail(request, pk):
+    breed = get_object_or_404(Breed, pk=pk)
+    context = {
+        'title': 'Каталог пород',
+        'breeds': breed
+    }
+    return render(request, 'catlibrary/breed_detail.html', context)
