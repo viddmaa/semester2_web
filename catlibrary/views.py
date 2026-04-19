@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Breed
+from django.shortcuts import redirect
+from .forms import FeedbackForm
 
 def index(request):
     context = {
@@ -38,6 +40,20 @@ def breed_detail(request, pk):
     breed = get_object_or_404(Breed, pk=pk)
     context = {
         'title': 'Каталог пород',
-        'breeds': breed
+        'breed': breed
     }
     return render(request, 'catlibrary/breed_detail.html', context)
+
+def contact(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+
+        if form.is_valid():
+            print(form.cleaned_data)
+
+            return redirect('catlibrary:home')
+
+    else:
+        form = FeedbackForm()
+
+    return render(request, 'catlibrary/contact.html', {'form': form})

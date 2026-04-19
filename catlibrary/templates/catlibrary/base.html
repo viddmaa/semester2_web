@@ -32,15 +32,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-warning" href="{% url 'catlibrary:about' %}">О нас</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link btn btn-warning" href="{% url 'catlibrary:care' %}">
                                 Уход
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-warning" href="{% url 'catlibrary:faq' %}">FAQ</a>
+                            <a class="nav-link btn btn-warning" href="{% url 'catlibrary:about' %}">
+                                О нас
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-warning" href="{% url 'catlibrary:faq' %}">
+                                FAQ
+                            </a>
                         </li>
                     </ul>
 
@@ -68,9 +72,11 @@
                 </div>
                 <div class="col-md-6 text-md-end">
                     <div>Связь с нами:</div>
-                    <a class="text-decoration-none" href="#">VK</a>
-                    <span class="text-muted">•</span>
-                    <a class="text-decoration-none" href="#">Mail</a>
+                    <div class="nav-item">
+                            <a class="text-decoration-none" href="{% url 'catlibrary:contact' %}">
+                                Задать вопрос
+                            </a>
+                        </div>
                 </div>
             </div>
         </div>
