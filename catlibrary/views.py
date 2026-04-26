@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Breed
 from django.shortcuts import redirect
-from .forms import FeedbackForm
+from .forms import FeedbackForm, BreedForm
 
 def index(request):
     context = {
@@ -57,3 +57,33 @@ def contact(request):
         form = FeedbackForm()
 
     return render(request, 'catlibrary/contact.html', {'form': form})
+
+def breed_create(request):
+    if request.method == 'POST':
+        form = BreedForm(request.POST, request.FILES)
+        if form.is_valid():
+            breed = form.save()
+            return redirect('catlibrary:breed_detail', pk=breed.pk)
+    else:
+        form = BreedForm()
+
+    return render(request, 'catlibrary/form.html', {
+        'form': form,
+        'title': 'Добавление породы'
+    })
+
+def breed_update(request, pk):
+    breed = get_object_or_404(Breed, pk=pk)
+
+    if request.method == 'POST':
+        form = BreedForm(request.POST, request.FILES, instance=breed)
+        if form.is_valid():
+            form.save()
+            return redirect('catlibrary:breed_detail', pk=breed.pk)
+    else:
+        form = BreedForm(instance=breed)
+
+    return render(request, 'catlibrary/form.html', {
+        'form': form,
+        'title': 'Редактирование породы'
+    })
