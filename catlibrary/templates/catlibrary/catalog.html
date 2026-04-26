@@ -7,6 +7,11 @@
 <div class="container mt-4">
     <h1 class="mb-4">Каталог пород кошек</h1>
 
+    <a href="{% url 'catlibrary:breed_create' %}" 
+        class="btn btn-warning mb-4">
+        + Добавить породу
+    </a>
+
     <div class="row">
         {% for breed in breeds %}
         <div class="col-md-4 mb-4">

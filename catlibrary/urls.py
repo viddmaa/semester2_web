@@ -11,5 +11,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('faq/', views.faq, name='faq'),
     path('contact/', views.contact, name='contact'),
+    path('create/', views.breed_create, name='breed_create'),
+    path('edit/<int:pk>/', views.breed_update, name='breed_update'),
 
 ]
