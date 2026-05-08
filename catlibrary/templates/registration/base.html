@@ -1,0 +1,24 @@
+{% if user.is_authenticated %}
+
+    <span class="me-3">
+        Привет, {{ user.username }}
+    </span>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-danger">
+            Выход
+        </button>
+    </form>
+
+{% else %}
+
+    <a href="{% url 'login' %}" class="btn btn-outline-warning me-2">
+        Вход
+    </a>
+
+    <a href="{% url 'register' %}" class="btn btn-warning">
+        Регистрация
+    </a>
+
+{% endif %}
