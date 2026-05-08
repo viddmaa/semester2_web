@@ -50,6 +50,24 @@
                 </div>
             </div>
 
+                        <div class="mt-4">
+                <h5 class="mb-3">Теги</h5>
+
+                {% if breed.tags.all %}
+                    <div class="d-flex flex-wrap gap-2">
+                        {% for tag in breed.tags.all %}
+                            <span class="badge text-bg-warning px-3 py-2">
+                                {{ tag.name }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted mb-0">
+                        Теги отсутствуют
+                    </p>
+                {% endif %}
+            </div>
+
             <a href="{% url 'catlibrary:breed_update' breed.pk %}" class="btn btn-warning mt-4">
                 Редактировать
             </a>

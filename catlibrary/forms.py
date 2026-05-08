@@ -31,11 +31,12 @@ class FeedbackForm(forms.Form):
 class BreedForm(forms.ModelForm):
     class Meta:
         model = Breed
-        fields = ['name', 'description', 'average_weight', 'life_expectancy', 'image']
+        fields = ['name', 'description', 'average_weight', 'life_expectancy', 'image', 'tags']
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
             'average_weight': forms.NumberInput(attrs={'class': 'form-control'}),
             'life_expectancy': forms.NumberInput(attrs={'class': 'form-control'}),
+            'tags': forms.CheckboxSelectMultiple(),
         }

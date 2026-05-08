@@ -3,19 +3,32 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
+class Tag(models.Model):
+    name = models.CharField(
+        max_length=30,
+        verbose_name='Название тега'
+    )
+
+    def __str__(self):
+        return self.name
+
+
 class Breed(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='Название породы'
     )
+
     description = models.TextField(
         verbose_name='Описание'
     )
+
     average_weight = models.DecimalField(
         max_digits=4,
         decimal_places=1,
         verbose_name='Средний вес'
     )
+
     life_expectancy = models.IntegerField(
         verbose_name='Средняя продолжительность жизни'
     )
@@ -26,7 +39,7 @@ class Breed(models.Model):
         blank=True,
         null=True
     )
-    
+
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата создания'
@@ -38,12 +51,21 @@ class Breed(models.Model):
         verbose_name='Автор'
     )
 
+    tags = models.ManyToManyField(
+        Tag,
+        blank=True,
+        related_name='breeds',
+        verbose_name='Теги'
+    )
+
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
-        return reverse('catlibrary:breed_detail', kwargs={'pk': self.pk})
-    
+        return reverse(
+            'catlibrary:breed_detail',
+            kwargs={'pk': self.pk}
+        )
 
     class Meta:
         verbose_name = 'Порода'
