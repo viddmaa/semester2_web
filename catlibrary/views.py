@@ -1,6 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 from .models import Breed
-from django.shortcuts import redirect
 from .forms import FeedbackForm, BreedForm
 
 def index(request):
@@ -39,7 +42,7 @@ def catalog(request):
 def breed_detail(request, pk):
     breed = get_object_or_404(Breed, pk=pk)
     context = {
-        'title': 'Каталог пород',
+        'title': breed.name,
         'breed': breed
     }
     return render(request, 'catlibrary/breed_detail.html', context)
@@ -50,19 +53,20 @@ def contact(request):
 
         if form.is_valid():
             print(form.cleaned_data)
-
             return redirect('catlibrary:home')
-
     else:
         form = FeedbackForm()
 
     return render(request, 'catlibrary/contact.html', {'form': form})
 
+@login_required
 def breed_create(request):
     if request.method == 'POST':
         form = BreedForm(request.POST, request.FILES)
         if form.is_valid():
-            breed = form.save()
+            breed = form.save(commit=False)
+            breed.author = request.user
+            breed.save()
             return redirect('catlibrary:breed_detail', pk=breed.pk)
     else:
         form = BreedForm()
@@ -72,6 +76,7 @@ def breed_create(request):
         'title': 'Добавление породы'
     })
 
+@login_required
 def breed_update(request, pk):
     breed = get_object_or_404(Breed, pk=pk)
 
@@ -87,3 +92,8 @@ def breed_update(request, pk):
         'form': form,
         'title': 'Редактирование породы'
     })
+
+class RegisterView(CreateView):
+    template_name = 'registration/register.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')

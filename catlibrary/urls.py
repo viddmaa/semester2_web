@@ -13,5 +13,6 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('create/', views.breed_create, name='breed_create'),
     path('edit/<int:pk>/', views.breed_update, name='breed_update'),
+    path('accounts/register/', views.RegisterView.as_view(), name='register'),
 
 ]
